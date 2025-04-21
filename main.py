@@ -1,13 +1,13 @@
-from grafos.practica1 import *
-from grafos.practica2 import *
+import grafos.resoluciones as p1
 
 def main():
-    mostrar_saludo()
+    
+    p1.mostrar_saludo()
 
-    grafo = lee_grafo_stdin(['3', 'A', 'B', 'C', 'A B', 'B C', 'C B'])
-    print("Grafo leído:", grafo)
+    p1.lee_grafo_stdin(['3', 'A', 'B', 'C', 'A B', 'B C', 'C B'])
 
-    print("Grados:", cuenta_grado(grafo))
+    p1.cuenta_grado(['A','B','C'],[('A','B'),('B','C'),('C','B')]) 
     
 if __name__ == '__main__':
+    
     main()
