@@ -36,7 +36,7 @@ def lee_grafo_archivo(file):
     aristas = []
 
     for arista_str in grafo[1 + cant_vert:]:
-    nodo1, nodo2 = arista_str.split()
+        nodo1, nodo2 = arista_str.split()
     aristas.append ((nodo1, nodo2))
 
     return(vertices, aristas)

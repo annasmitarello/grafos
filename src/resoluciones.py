@@ -16,7 +16,7 @@ def lee_grafo_stdin(grafo):
     
 pass
 
-def lee_grafo_archivo(file):
+def lee_grafo(file):
     grafo = []
     with open(file, 'r', enconding = 'utf-8') as file:
         for linea in file:

@@ -1,4 +1,5 @@
-import grafos.resoluciones as p1
+import pytest
+import src.resoluciones as p1
 
 def main():
     
