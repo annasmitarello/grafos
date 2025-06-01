@@ -2,7 +2,7 @@ def mostrar_saludo():
     print ("Hola Mundo")
 pass
 
-def lee_grafo_stdin(grafo):
+def lee_grafo(grafo):
     cant_vert = int(grafo[0])
     vertices = grafo[1 : 1 + cant_vert]
 
@@ -16,9 +16,9 @@ def lee_grafo_stdin(grafo):
     
 pass
 
-def lee_grafo(file):
+def lee_grafo_archivo(file):
     grafo = []
-    with open(file, 'r', enconding = 'utf-8') as file:
+    with open(file, 'r', encoding = 'utf-8') as file:
         for linea in file:
             grafo.append(linea.strip())
     
@@ -33,6 +33,27 @@ def lee_grafo(file):
 
     return(vertices, aristas)
 
+pass
+
+def imprime_grafo_lista(grafo):
+    '''
+    Muestra por pantalla un grafo. El argumento está en formato de lista.
+    Formato de entrada: (['A', 'B', 'C'], [('A', 'B'), ('B', 'C')])
+    Salida:
+    A: B
+    B: A, C
+    C: B
+    '''
+    vertices, aristas = grafo
+    adyacentes = {v: [] for v in vertices}
+
+    for origen, destino in aristas:
+        adyacentes[origen].append(destino)
+        adyacentes[destino].append(origen)  # Solo si el grafo es no dirigido
+
+    for vertice in vertices:
+        vecinos = ", ".join(adyacentes[vertice])
+        print(f"{vertice}: {vecinos}")
 pass
 
 def cuenta_grado(grafo_lista):
