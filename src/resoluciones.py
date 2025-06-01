@@ -59,7 +59,7 @@ pass
 def cuenta_grado(grafo_lista):
    
     vertices, aristas = grafo_lista
-    grados = {v: 0 for v in vertices}
+    grados = {v: 0 for v in vertices} #grados = { 'A': 0, 'B': 0, 'C': 0}
     
     for origen, destino in aristas:
         grados[origen] += 1
@@ -67,3 +67,57 @@ def cuenta_grado(grafo_lista):
     
     return grados
 pass
+
+def vertice_aislado(grafo_lista):
+    '''
+    Dado un grafo en representación de lista, obtiene una lista de los vértices aislados.
+    '''
+    vertices, aristas = grafo_lista
+    
+    # Creamos un conjunto vacío para guardar vértices conectados
+    conectados = set()
+    
+    # Recorremos las aristas y agregamos los vértices que aparecen en ellas
+    for origen, destino in aristas:
+        conectados.add(origen)
+        conectados.add(destino)
+    
+    # Ahora comparamos con todos los vértices para encontrar los que no están conectados
+    aislados = [v for v in vertices if v not in conectados]
+    
+    return aislados
+
+def componentes_conexas(grafo_lista):
+    vertices, aristas = grafo_lista
+
+    # Creamos el diccionario de adyacencias
+    adyacentes = {v: [] for v in vertices}
+    for origen, destino in aristas:
+        adyacentes[origen].append(destino)
+        adyacentes[destino].append(origen)  # no dirigido
+
+    visitados = set()
+    componentes = []
+
+    # Función auxiliar para DFS(deep first search busca en grafos)
+    def dfs(v, componente):
+        visitados.add(v)
+        componente.append(v)
+        for vecino in adyacentes[v]:
+            if vecino not in visitados:
+                dfs(vecino, componente)
+
+    # Recorremos todos los vértices
+    for v in vertices:
+        if v not in visitados:
+            componente = []
+            dfs(v, componente)
+            componentes.append(componente)
+
+    return componentes
+
+def es_conexo(grafo_lista):
+    componentes = componentes_conexas(grafo_lista)
+    return len(componentes) == 1
+
+
